@@ -38,6 +38,6 @@ jobs:
       continue-on-error: true
       run: |
         # Stage the file, commit and push
-        git add *.csv
-        git commit -m "add data"
+        git add data
+        git commit -m "update data"
         git push origin main

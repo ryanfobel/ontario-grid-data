@@ -35,7 +35,7 @@ def load_page(driver):
 
 
 def scrape_summary_data(driver, timeOfReading):
-    filename = "summary.csv"
+    filename = os.path.join("data", "summary.csv")
     if os.path.exists(filename):
         df = pd.read_csv(filename, index_col=0)
         if timeOfReading in df.index:
@@ -91,7 +91,7 @@ def scrape_plant_level_data(driver):
 
 
 def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, key):
-    filename = key + ".csv"
+    filename = os.path.join("data", key + ".csv")
     if os.path.exists(filename):
         df_out = pd.read_csv(filename, index_col=0)
     else:
@@ -120,9 +120,14 @@ def main():
         timeOfReading = load_page(driver)
         scrape_summary_data(driver, timeOfReading)
         df_plant_level_data = scrape_plant_level_data(driver)
-        df_plant_level_data.drop(["output"], axis=1).to_csv("plants.csv", index=False)
         get_row_from_plant_level_data(
             driver, timeOfReading, df_plant_level_data, "output"
+        )
+        get_row_from_plant_level_data(
+            driver, timeOfReading, df_plant_level_data, "capability"
+        )
+        df_plant_level_data.drop(["output", "capability"], axis=1).to_csv(
+            os.path.join("data", "plants.csv"), index=False
         )
     finally:
         driver.close()
