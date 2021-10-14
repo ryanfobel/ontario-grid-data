@@ -35,6 +35,7 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
     - name: Commit
+      continue-on-error: true
       run: |
         # Stage the file, commit and push
         git add *.csv
