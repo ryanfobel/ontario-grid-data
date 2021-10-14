@@ -1,0 +1,42 @@
+name: Scheduled update
+
+on:
+  schedule:
+    # Run at 15 and 45 min past every hour
+    - cron: "15,45 * * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+    - name: Install python3.10-venv and firefox
+      run: sudo apt-get install python3.10-venv firefox
+    #- name: Install poetry
+    #  uses: abatilo/actions-poetry@v2.0.0
+    #  with:
+    #    poetry-version: 1.1.0
+    - name: Install dependencies
+      run: |
+        pip install get-gecko-driver selenium pandas
+        get-gecko-driver --download-latest --extract    
+    #- name: Poetry install
+    #  run: |
+    #    poetry install
+    - name: Run scraper
+      run: |
+        python gridwatch_scraper.py
+    - name: setup git config
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+    - name: commit
+      run: |
+        # Stage the file, commit and push
+        git add *.csv
+        git commit -m "add data"
+        git push origin master
