@@ -4,9 +4,6 @@ on:
   schedule:
     # Run at 15 and 45 min past every hour
     - cron: "15,45 * * * *"
-  push:
-    branches:
-      - '**'
 
 jobs:
   update:
@@ -33,11 +30,11 @@ jobs:
     - name: Run scraper
       run: |
         python gridwatch_scraper.py
-    - name: setup git config
+    - name: Setup git config
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: commit
+    - name: Commit
       run: |
         # Stage the file, commit and push
         git add *.csv
