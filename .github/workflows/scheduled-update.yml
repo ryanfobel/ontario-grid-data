@@ -3,7 +3,7 @@ name: Scheduled update
 on:
   schedule:
     # Run every 15 min
-    - cron: "0,15,30,45 * * * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   update:
