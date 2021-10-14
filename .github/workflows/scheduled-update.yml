@@ -3,7 +3,7 @@ name: Scheduled update
 on:
   schedule:
     # Run at 15 and 45 min past every hour
-    - cron: "15,35 * * * *"
+    - cron: "15,45 * * * *"
   push:
     branches:
       - '**'
