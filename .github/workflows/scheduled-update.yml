@@ -42,4 +42,4 @@ jobs:
         # Stage the file, commit and push
         git add *.csv
         git commit -m "add data"
-        git push origin master
+        git push origin main
