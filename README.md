@@ -7,4 +7,4 @@ This project downloads hourly data on the Ontario electricity grid from https://
 
 ## Contributors
 
-Ryan Fobel (@ryanfobel)
+Ryan Fobel ([@ryanfobel](https://github.com/ryanfobel))
