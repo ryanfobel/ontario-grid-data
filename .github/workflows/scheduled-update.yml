@@ -15,7 +15,9 @@ jobs:
       with:
         python-version: 3.9
     - name: Install python3.9-venv and firefox
-      run: sudo apt-get install python3.9-venv firefox
+      run: |
+        sudo apt-get update
+        sudo apt-get install python3.9-venv firefox
     #- name: Install poetry
     #  uses: abatilo/actions-poetry@v2.0.0
     #  with:
