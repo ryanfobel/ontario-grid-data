@@ -1,0 +1,14 @@
+name: python-energy
+dependencies:
+  - numpy
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - pandas
+  - pillow
+  - selenium
+  - arrow 
+  - graphviz
+  - python-graphviz
+  - imageio
+  - joblib
