@@ -67,7 +67,9 @@ def scrape_summary_data(driver, timeOfReading):
             ).text
 
     if timeOfReading not in df.index:
-        df = df.append(pd.DataFrame(data, index=[timeOfReading]))
+        df = pd.concat(
+            [df, pd.DataFrame(data, index=[timeOfReading])],
+        )
         df.to_csv(filename)
 
 
@@ -86,7 +88,10 @@ def scrape_plant_level_data(driver):
                 if e.text
             ]
         data["source"] = [source.text] * len(data[key])
-        df = df.append(pd.DataFrame(data), ignore_index=True)
+        df = pd.concat(
+            [df, pd.DataFrame(data)],
+            ignore_index=True
+        )
     return df
 
 
@@ -108,7 +113,9 @@ def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, ke
             },
             index=[timeOfReading],
         )
-        df_out = df_out.append(df_row)
+        df_out = pd.concat(
+            [df_out, df_row]
+        )
         df_out.to_csv(filename)
         return df_row
     return None
