@@ -8,6 +8,9 @@ from selenium.common.exceptions import (
 )
 
 
+DATA_PATH = os.path.join("data", "raw", "gridwatch.ca")
+
+
 def init_driver(headless=False):
     options = webdriver.firefox.options.Options()
     if headless:
@@ -35,7 +38,7 @@ def load_page(driver):
 
 
 def scrape_summary_data(driver, timeOfReading):
-    filename = os.path.join("data", "summary.csv")
+    filename = os.path.join(DATA_PATH, "summary.csv")
     if os.path.exists(filename):
         df = pd.read_csv(filename, index_col=0)
         if timeOfReading in df.index:
@@ -96,7 +99,7 @@ def scrape_plant_level_data(driver):
 
 
 def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, key):
-    filename = os.path.join("data", key + ".csv")
+    filename = os.path.join(DATA_PATH, key + ".csv")
     if os.path.exists(filename):
         df_out = pd.read_csv(filename, index_col=0)
     else:
@@ -134,7 +137,7 @@ def main():
             driver, timeOfReading, df_plant_level_data, "capability"
         )
         df_plant_level_data.drop(["output", "capability"], axis=1).to_csv(
-            os.path.join("data", "plants.csv"), index=False
+            os.path.join(DATA_PATH, "plants.csv"), index=False
         )
     finally:
         driver.close()
