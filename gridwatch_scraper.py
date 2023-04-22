@@ -14,12 +14,17 @@ RAW_DATA_PATH = os.path.join("data", "raw", "gridwatch.ca")
 CLEAN_DATA_PATH = os.path.join("data", "clean", "gridwatch.ca")
 
 
-def clean_summary(df: pd.DataFrame):
+def clean_df(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     dt_index = extract_datetime_from_string_list(df.index)
     df = df.reset_index().loc[dt_index.index]
     df.index = dt_index.values
     df = df.drop(columns="index")
+    return df
+
+
+def clean_summary(df: pd.DataFrame) -> pd.DataFrame:
+    df = clean_df(df)
 
     percentage_cols = [col for col in df.columns if col.endswith('Percentage')]
     for col in df[percentage_cols]:
@@ -48,7 +53,6 @@ def clean_summary(df: pd.DataFrame):
         "TOTAL EMISSIONS": "Total Emissions (tonnes)",
         "CO2e INTENSITY": "CO2e Intensity (g/kWh)",
     })
-
     return df
 
 
@@ -256,6 +260,16 @@ def main():
     ).to_csv(
         os.path.join(CLEAN_DATA_PATH, "summary.csv")
     )
+    for file in ["output.csv", "capability.csv"]:
+        clean_df(
+            pd.read_csv(
+                os.path.join(RAW_DATA_PATH, file),
+                index_col=0,
+                thousands=','
+            )
+        ).to_csv(
+            os.path.join(CLEAN_DATA_PATH, file)
+        )
 
 
 if __name__ == "__main__":
