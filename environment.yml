@@ -1,0 +1,10 @@
+name: python-energy
+dependencies:
+  - numpy
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - pandas
+  - selenium
+  - arrow 
+  

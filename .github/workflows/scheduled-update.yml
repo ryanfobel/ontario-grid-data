@@ -9,22 +9,23 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - name: Set up Python 3
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.9
-    - name: Install python3.9-venv and firefox
+        python-version: 3
+    - name: Install python3-venv and firefox
       run: |
         sudo apt-get update
-        sudo apt-get install python3.9-venv firefox
+        sudo apt-get install python3-venv firefox
     #- name: Install poetry
     #  uses: abatilo/actions-poetry@v2.0.0
     #  with:
     #    poetry-version: 1.1.0
     - name: Install dependencies
       run: |
-        pip install get-gecko-driver selenium==4.2.0 pandas
+        pip install selenium==4.2.0 pandas
+        pip install git+https://github.com/zaironjacobs/get-gecko-driver@main#egg=get_gecko_driver
         get-gecko-driver --download-latest --extract    
     #- name: Poetry install
     #  run: |
