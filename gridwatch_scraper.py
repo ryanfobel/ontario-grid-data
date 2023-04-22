@@ -14,6 +14,13 @@ RAW_DATA_PATH = os.path.join("data", "raw", "gridwatch.ca")
 CLEAN_DATA_PATH = os.path.join("data", "clean", "gridwatch.ca")
 
 
+def get_file(filename: str, stage: str="clean", source: str="github"):
+    if source == "github":
+        return f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{filename}?raw=true"
+    else:
+        return os.path.join("data", stage, "gridwatch.ca", filename)
+
+
 def clean_df(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     dt_index = extract_datetime_from_string_list(df.index)
