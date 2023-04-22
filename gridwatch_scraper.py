@@ -247,9 +247,14 @@ def main():
 
     # Clean data
     print("clean data...")
-    df_summary = pd.read_csv(os.path.join(RAW_DATA_PATH, "summary.csv"), index_col=0, thousands=',')
-    clean_summary(df_summary).to_csv(
-            os.path.join(CLEAN_DATA_PATH, "summary.csv"), index=False
+    clean_summary(
+        pd.read_csv(
+            os.path.join(RAW_DATA_PATH, "summary.csv"),
+            index_col=0,
+            thousands=','
+        )
+    ).to_csv(
+        os.path.join(CLEAN_DATA_PATH, "summary.csv")
     )
 
 
