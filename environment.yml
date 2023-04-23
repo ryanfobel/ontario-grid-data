@@ -1,4 +1,4 @@
-name: python-energy
+name: gridwatch
 dependencies:
   - numpy
   - scipy
@@ -6,5 +6,6 @@ dependencies:
   - matplotlib
   - pandas
   - selenium
-  - arrow 
+  - openpyxl
+  - arrow
   
