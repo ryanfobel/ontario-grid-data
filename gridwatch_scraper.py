@@ -14,11 +14,20 @@ RAW_DATA_PATH = os.path.join("data", "raw", "gridwatch.ca")
 CLEAN_DATA_PATH = os.path.join("data", "clean", "gridwatch.ca")
 
 
-def get_file(filename: str, stage: str="clean", source: str="github"):
+def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
+    df.index = pd.to_datetime(df.index)
+    return df
+
+
+def load_file(filename: str, stage: str="clean", source: str="github"):
     if source == "github":
-        return f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{filename}?raw=true"
+        filepath = f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{filename}?raw=true"
     else:
-        return os.path.join("data", stage, "gridwatch.ca", filename)
+        filepath = os.path.join("data", stage, "gridwatch.ca", filename)
+    df = pd.read_csv(filepath, index_col=0, thousands=',')
+    if filename in ["summary.csv", "output.csv", "capability.csv"]:
+        df = convert_index_to_datetime(df)
+    return df
 
 
 def clean_df(df: pd.DataFrame) -> pd.DataFrame:
