@@ -300,7 +300,7 @@ def main():
                 raise RuntimeError(response.status_code)
             json_string = json.dumps(json.loads(response.content), indent=4)
             print(json_string)
-            with open(os.path.join("data", "raw", "co2signal", "latest.json"), "w") as f:
+            with open(os.path.join("data", "raw", "co2signal.com", "latest.json"), "w") as f:
                  f.write(json_string)
  
         co2_signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
