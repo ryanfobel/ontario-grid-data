@@ -8,6 +8,8 @@ from selenium.common.exceptions import (
     NoSuchElementException,
     StaleElementReferenceException,
 )
+from dotenv import load_dotenv
+import requests
 
 
 RAW_DATA_PATH = os.path.join("data", "raw", "gridwatch.ca")
@@ -248,6 +250,9 @@ def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, ke
 
 
 def main():
+    load_dotenv()
+
+    """
     driver = init_driver(headless=True)
     try:
         timeOfReading = load_page(driver)
@@ -286,7 +291,18 @@ def main():
         ).to_csv(
             os.path.join(CLEAN_DATA_PATH, file)
         )
-
+    """
+    if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
+        def co2_signal_get_latest(token: str, country_code: str="CA-ON"):
+            url = f"https://api.co2signal.com/v1/latest?countryCode={country_code}\""
+            response = requests.get(url, headers={'auth-token': f'{token}'})
+            if response.status_code != 200:
+                raise RuntimeError(response.status_code)
+            print(response.content)
+            with open(os.path.join("data", "raw", "co2signal", "latest.json"), "w") as f:
+                 f.write(response.content.decode("utf-8"))
+ 
+        co2_signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
 
 if __name__ == "__main__":
     main()
