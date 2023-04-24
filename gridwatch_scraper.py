@@ -1,5 +1,6 @@
 import os
 from typing import List
+import json
 
 import datetime as dt
 import pandas as pd
@@ -294,13 +295,14 @@ def main():
     """
     if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
         def co2_signal_get_latest(token: str, country_code: str="CA-ON"):
-            url = f"https://api.co2signal.com/v1/latest?countryCode={country_code}\""
+            url = f"https://api.co2signal.com/v1/latest?countryCode={country_code}"
             response = requests.get(url, headers={'auth-token': f'{token}'})
             if response.status_code != 200:
                 raise RuntimeError(response.status_code)
-            print(response.content)
+            json_string = json.dumps(json.loads(response.content), indent=4)
+            print(json_string)
             with open(os.path.join("data", "raw", "co2signal", "latest.json"), "w") as f:
-                 f.write(response.content.decode("utf-8"))
+                 f.write(json_string)
  
         co2_signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
 
