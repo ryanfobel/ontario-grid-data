@@ -253,7 +253,6 @@ def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, ke
 def main():
     load_dotenv()
 
-    """
     driver = init_driver(headless=True)
     try:
         timeOfReading = load_page(driver)
@@ -292,7 +291,7 @@ def main():
         ).to_csv(
             os.path.join(CLEAN_DATA_PATH, file)
         )
-    """
+
     if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
         def co2_signal_get_latest(token: str, country_code: str="CA-ON"):
             url = f"https://api.co2signal.com/v1/latest?countryCode={country_code}"
