@@ -12,9 +12,9 @@ from selenium.common.exceptions import (
 from dotenv import load_dotenv
 import requests
 
-
-RAW_DATA_PATH = os.path.join("data", "raw", "gridwatch.ca")
-CLEAN_DATA_PATH = os.path.join("data", "clean", "gridwatch.ca")
+ROOT = os.path.dirname(os.path.abspath(__file__))
+RAW_DATA_PATH = os.path.join(ROOT, "data", "raw", "gridwatch.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "data", "clean", "gridwatch.ca", "historical")
 
 
 def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
@@ -24,9 +24,15 @@ def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
 
 def load_file(filename: str, stage: str="clean", source: str="github"):
     if source == "github":
-        filepath = f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{filename}?raw=true"
+        historical = ""
+        if stage=="clean":
+            historical = "historical/"
+        filepath = f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{historical}{filename}?raw=true"
     else:
-        filepath = os.path.join("data", stage, "gridwatch.ca", filename)
+        if stage=="clean":
+            filepath = os.path.join(CLEAN_DATA_PATH, filename)
+        else:
+            filepath = os.path.join(RAW_DATA_PATH, filename)
     df = pd.read_csv(filepath, index_col=0, thousands=',')
     if filename in ["summary.csv", "output.csv", "capability.csv"]:
         df = convert_index_to_datetime(df)
@@ -250,6 +256,16 @@ def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, ke
     return None
 
 
+def write_latest_json(name: str):
+    history_path = f"{name}.csv"
+    latest_path = os.path.join("data", "clean", "gridwatch.ca", "latest", f"{name}.json")
+    df = load_file(history_path, source="local")
+    df.index = [index.isoformat() for index in df.index]
+    df.index.name = "datetime"
+    with open(latest_path, "w") as f:
+        f.write(json.dumps(df.reset_index().iloc[-1].to_dict(), indent=4))
+
+
 def main():
     load_dotenv()
 
@@ -292,6 +308,11 @@ def main():
             os.path.join(CLEAN_DATA_PATH, file)
         )
 
+    print("write latest json files...")
+    for name in ["summary", "output", "capability"]:
+        write_latest_json(name)
+
+    print("query co2signal...")
     if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
         def co2_signal_get_latest(token: str, country_code: str="CA-ON"):
             url = f"https://api.co2signal.com/v1/latest?countryCode={country_code}"
