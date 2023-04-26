@@ -13,8 +13,8 @@ from dotenv import load_dotenv
 import requests
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-RAW_DATA_PATH = os.path.join(ROOT, "data", "raw", "gridwatch.ca")
-CLEAN_DATA_PATH = os.path.join(ROOT, "data", "clean", "gridwatch.ca", "historical")
+RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "gridwatch.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "gridwatch.ca", "historical")
 
 
 def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
@@ -311,6 +311,10 @@ def main():
     print("write latest json files...")
     for name in ["summary", "output", "capability"]:
         write_latest_json(name)
+
+    data_json = fetch_production(target_datetime=now)
+    data_json[-1]['datetime'] = data_json[-1]['datetime'].isoformat()
+    print(json.dumps(data_json[-1], indent=4))
 
     print("query co2signal...")
     if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
