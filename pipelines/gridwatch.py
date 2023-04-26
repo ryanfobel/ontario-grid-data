@@ -312,9 +312,6 @@ def main():
     for name in ["summary", "output", "capability"]:
         write_latest_json(name)
 
-    data_json = fetch_production(target_datetime=now)
-    data_json[-1]['datetime'] = data_json[-1]['datetime'].isoformat()
-    print(json.dumps(data_json[-1], indent=4))
 
 if __name__ == "__main__":
     main()
