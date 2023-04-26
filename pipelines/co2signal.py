@@ -1,9 +1,12 @@
 import os
 import datetime as dt
 import json
+from subprocess import check_call, CalledProcessError
 
 import requests
 from dotenv import load_dotenv
+
+from .utilities import update_hourly
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +28,10 @@ def main():
                  f.write(json_string)
  
         co2_signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
+    
+    filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest.json"))
+    hourly_path = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "hourly.csv"))
+    update_hourly(filepath, hourly_path)
 
 
 if __name__ == "__main__":
