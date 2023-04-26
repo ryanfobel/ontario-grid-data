@@ -6,7 +6,7 @@ from .CA import fetch_production
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "ieso.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "ieso.ca")
 
 
 def main():
