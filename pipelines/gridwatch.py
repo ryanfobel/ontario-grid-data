@@ -14,7 +14,7 @@ import requests
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "gridwatch.ca")
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "gridwatch.ca", "historical")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "gridwatch.ca", "hourly")
 
 
 def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
@@ -24,10 +24,10 @@ def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
 
 def load_file(filename: str, stage: str="clean", source: str="github"):
     if source == "github":
-        historical = ""
+        hourly = ""
         if stage=="clean":
-            historical = "historical/"
-        filepath = f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{historical}{filename}?raw=true"
+            hourly = "hourly/"
+        filepath = f"https://github.com/ryanfobel/gridwatch-history/blob/main/data/{stage}/gridwatch.ca/{hourly}{filename}?raw=true"
     else:
         if stage=="clean":
             filepath = os.path.join(CLEAN_DATA_PATH, filename)
