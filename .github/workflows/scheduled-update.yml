@@ -36,6 +36,7 @@ jobs:
       run: |
         python -m pipeline.gridwatch
         python -m pipeline.ieso
+        python -m pipeline.co2signal
     - name: Setup git config
       run: |
         git config user.name "GitHub Actions Bot"

@@ -316,19 +316,5 @@ def main():
     data_json[-1]['datetime'] = data_json[-1]['datetime'].isoformat()
     print(json.dumps(data_json[-1], indent=4))
 
-    print("query co2signal...")
-    if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
-        def co2_signal_get_latest(token: str, country_code: str="CA-ON"):
-            url = f"https://api.co2signal.com/v1/latest?countryCode={country_code}"
-            response = requests.get(url, headers={'auth-token': f'{token}'})
-            if response.status_code != 200:
-                raise RuntimeError(response.status_code)
-            json_string = json.dumps(json.loads(response.content), indent=4)
-            print(json_string)
-            with open(os.path.join("data", "raw", "co2signal.com", country_code, "latest.json"), "w") as f:
-                 f.write(json_string)
- 
-        co2_signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
-
 if __name__ == "__main__":
     main()
