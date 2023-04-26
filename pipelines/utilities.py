@@ -53,5 +53,6 @@ def update_hourly(filepath: str, hourly_path: str) -> pd.DataFrame:
         df,
         df_cached
     ], axis=0)
+    df = df[[col for col in df.columns if not col.startswith("_")]]
     df.to_csv(hourly_path)
     return df
