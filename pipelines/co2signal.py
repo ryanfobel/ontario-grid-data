@@ -20,7 +20,7 @@ def co2signal_get_latest(token: str, country_code: str="CA-ON") -> dict:
         raise RuntimeError(response.status_code)
     json_string = json.dumps(json.loads(response.content), indent=4)
     print(json_string)
-    with open(os.path.join(CLEAN_DATA_PATH, country_code, "latest.json"), "w") as f:
+    with open(os.path.join(CLEAN_DATA_PATH, country_code, "latest", "output.json"), "w") as f:
         f.write(json_string)
     return json.loads(json_string)
 
@@ -34,8 +34,8 @@ def main():
         check_call(["git", "add", "data"])
         check_call(["git", "commit", "-m", "update data"])
 
-    filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest.json"))
-    hourly_path = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "hourly.csv"))
+    filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest", "output.json"))
+    hourly_path = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "hourly", "output.csv"))
     update_hourly(filepath, hourly_path)
 
 
