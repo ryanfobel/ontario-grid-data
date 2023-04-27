@@ -25,7 +25,7 @@ def get_historical_json_from_git(filepath: str, n_revisions: int) -> dict:
     data = None
     try:
         cmd = ["git", "checkout", f"HEAD~{n_revisions}", filepath]
-        print(cmd)
+        print(" ".join(cmd))
         check_call(cmd)
         data = json.loads(open(filepath, "r").read())
     finally:
@@ -47,6 +47,7 @@ def update_hourly(filepath: str, hourly_path: str) -> pd.DataFrame:
             i += 1
         except CalledProcessError as e:
             print("CalledProcessError:", e)
+            print(f"No more git history for {filepath}")
             break
         if timestamp in df_cached.index:
             print(f"Timestamp {timestamp} already in index")

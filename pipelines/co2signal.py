@@ -1,7 +1,7 @@
 import os
 import datetime as dt
 import json
-from subprocess import check_call, CalledProcessError
+from subprocess import check_call, check_output, CalledProcessError
 
 import requests
 from dotenv import load_dotenv
@@ -32,7 +32,11 @@ def main():
         co2signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
         # Commit changes
         check_call(["git", "add", "data"])
-        check_call(["git", "commit", "-m", "update data"])
+        try:
+            check_output(['git', 'commit', '-m', '"update data"'])
+        except CalledProcessError as e:
+            if 'no changes added to commit' not in e.output.decode("utf-8"):
+                raise
 
     filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest", "output.json"))
     hourly_path = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "hourly", "output.csv"))
