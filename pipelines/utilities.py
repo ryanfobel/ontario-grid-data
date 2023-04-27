@@ -24,7 +24,9 @@ def create_json_history_from_git(filepath: str, max_revisions: int=None) -> list
 def get_historical_json_from_git(filepath: str, n_revisions: int) -> dict:
     data = None
     try:
-        check_call(["git", "checkout", f"HEAD~{n_revisions}", filepath])
+        cmd = ["git", "checkout", f"HEAD~{n_revisions}", filepath]
+        print(cmd)
+        check_call(cmd)
         data = json.loads(open(filepath, "r").read())
     finally:
         # reset the file back to HEAD
@@ -43,10 +45,15 @@ def update_hourly(filepath: str, hourly_path: str) -> pd.DataFrame:
             data.append(get_historical_json_from_git(filepath, i))
             timestamp = pd.to_datetime(pd.json_normalize(data[-1])["data.datetime"][0])
             i += 1
-        except CalledProcessError:
+        except CalledProcessError as e:
+            print("CalledProcessError:", e)
             break
         if timestamp in df_cached.index:
+            print(f"Timestamp {timestamp} already in index")
             break
+    if not len(data):
+        return None
+
     df = pd.json_normalize(data)
     df = df.set_index("data.datetime")
     df = pd.concat([
