@@ -33,7 +33,7 @@ def main():
         # Commit changes
         check_call(["git", "add", "data"])
         try:
-            check_output(['git', 'commit', '-m', '"update data"'])
+            check_output(['git', 'commit', '-m', 'update data'])
         except CalledProcessError as e:
             if 'no changes added to commit' not in e.output.decode("utf-8"):
                 raise
