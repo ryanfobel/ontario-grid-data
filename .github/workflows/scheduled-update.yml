@@ -4,6 +4,9 @@ on:
   schedule:
     # Run every 15 min
     - cron: "*/15 * * * *"
+  push:
+    branches:
+      - main
 
 jobs:
   update:
