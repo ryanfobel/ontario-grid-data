@@ -21,7 +21,7 @@ def co2signal_get_latest(token: str, country_code: str="CA-ON") -> dict:
     json_string = json.dumps(json.loads(response.content), indent=4)
     print(json_string)
     with open(os.path.join(CLEAN_DATA_PATH, country_code, "latest.json"), "w") as f:
-            f.write(json_string)
+        f.write(json_string)
     return json.loads(json_string)
 
 
@@ -30,7 +30,10 @@ def main():
     print("query co2signal...")
     if "CO2SIGNAL_API_TOKEN" in os.environ.keys():
         co2signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
-    
+        # Commit changes
+        check_call(["git", "add", "data"])
+        check_call(["git", "commit", "-m" "\"update data\""])
+
     filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest.json"))
     hourly_path = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "hourly.csv"))
     update_hourly(filepath, hourly_path)
