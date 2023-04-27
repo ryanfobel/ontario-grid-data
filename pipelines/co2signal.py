@@ -36,6 +36,7 @@ def main():
             check_output(['git', 'commit', '-m', 'update data'])
         except CalledProcessError as e:
             if 'no changes added to commit' not in e.output.decode("utf-8"):
+                print(e.output)
                 raise
 
     filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest", "output.json"))
