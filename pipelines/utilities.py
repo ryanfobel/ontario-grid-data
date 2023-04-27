@@ -47,12 +47,13 @@ def update_hourly(filepath: str, hourly_path: str) -> pd.DataFrame:
             break
         if timestamp in df_cached.index:
             break
-    df = pd.json_normalize(data).drop_duplicates()
+    df = pd.json_normalize(data)
     df = df.set_index("data.datetime")
     df = pd.concat([
         df,
         df_cached
     ], axis=0)
-    df = df[[col for col in df.columns if not col.startswith("_")]]
+    df.index = pd.to_datetime(df.index, utc=True)
+    df = df[[col for col in df.columns if not col.startswith("_")]].drop_duplicates()
     df.to_csv(hourly_path)
     return df
