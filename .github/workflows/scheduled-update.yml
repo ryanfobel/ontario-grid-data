@@ -43,9 +43,9 @@ jobs:
       env:
         CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
       run: |
+        python -m pipelines.co2signal
         python -m pipelines.gridwatch
         python -m pipelines.ieso
-        python -m pipelines.co2signal
     - name: Commit
       continue-on-error: true
       run: |
