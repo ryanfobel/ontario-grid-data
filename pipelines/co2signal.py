@@ -32,7 +32,7 @@ def main():
         co2signal_get_latest(os.environ["CO2SIGNAL_API_TOKEN"])
         # Commit changes
         check_call(["git", "add", "data"])
-        check_call(["git", "commit", "-m" "\"update data\""])
+        check_call(["git", "commit", "-m", "update data"])
 
     filepath = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "latest.json"))
     hourly_path = os.path.abspath(os.path.join(CLEAN_DATA_PATH, "CA-ON", "hourly.csv"))
