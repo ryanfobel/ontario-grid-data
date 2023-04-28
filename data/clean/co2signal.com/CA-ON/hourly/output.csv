@@ -1,4 +1,5 @@
 data.datetime,status,countryCode,data.carbonIntensity,data.fossilFuelPercentage,units.carbonIntensity
+2023-04-28 02:00:00+00:00,ok,CA-ON,57,9.13,gCO2eq/kWh
 2023-04-28 01:00:00+00:00,ok,CA-ON,63,10.51,gCO2eq/kWh
 2023-04-27 23:00:00+00:00,ok,CA-ON,66,11.13,gCO2eq/kWh
 2023-04-27 22:00:00+00:00,ok,CA-ON,70,11.83,gCO2eq/kWh
@@ -14,7 +15,6 @@ data.datetime,status,countryCode,data.carbonIntensity,data.fossilFuelPercentage,
 2023-04-26 14:00:00+00:00,ok,CA-ON,79,13.699999999999998,gCO2eq/kWh
 2023-04-26 13:00:00+00:00,ok,CA-ON,79,13.83,gCO2eq/kWh
 2023-04-26 12:00:00+00:00,ok,CA-ON,61,10.02,gCO2eq/kWh
-2023-04-26 11:00:00+00:00,ok,CA-ON,57,9.13,gCO2eq/kWh
 2023-04-26 10:00:00+00:00,ok,CA-ON,41,5.9,gCO2eq/kWh
 2023-04-26 08:00:00+00:00,ok,CA-ON,36,4.79,gCO2eq/kWh
 2023-04-26 07:00:00+00:00,ok,CA-ON,34,4.43,gCO2eq/kWh
