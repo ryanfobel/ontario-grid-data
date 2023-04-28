@@ -1,4 +1,5 @@
 data.datetime,status,countryCode,data.carbonIntensity,data.fossilFuelPercentage,units.carbonIntensity
+<<<<<<< HEAD
 2023-04-28 21:00:00+00:00,ok,CA-ON,47,7.08,gCO2eq/kWh
 2023-04-28 20:00:00+00:00,ok,CA-ON,43,6.4,gCO2eq/kWh
 2023-04-28 19:00:00+00:00,ok,CA-ON,46,6.909999999999999,gCO2eq/kWh
@@ -41,3 +42,23 @@ data.datetime,status,countryCode,data.carbonIntensity,data.fossilFuelPercentage,
 2023-04-26 05:00:00+00:00,ok,CA-ON,81,14.16,gCO2eq/kWh
 2023-04-26 04:00:00+00:00,ok,CA-ON,74,12.85,gCO2eq/kWh
 2023-04-26 00:00:00+00:00,ok,CA-ON,60,9.9,gCO2eq/kWh
+=======
+2023-04-27 13:00:00-04:00,ok,CA-ON,62,10.08,gCO2eq/kWh
+2023-04-27 12:00:00-04:00,ok,CA-ON,81,14.17,gCO2eq/kWh
+2023-04-27 09:00:00-04:00,ok,CA-ON,79,13.69,gCO2eq/kWh
+2023-04-27 09:00:00-04:00,ok,CA-ON,80,14.14,gCO2eq/kWh
+2023-04-26 13:00:00-04:00,ok,CA-ON,70,11.89,gCO2eq/kWh
+2023-04-26 12:00:00-04:00,ok,CA-ON,76,13.06,gCO2eq/kWh
+2023-04-26 11:00:00-04:00,ok,CA-ON,75,12.990000000000002,gCO2eq/kWh
+2023-04-26 10:00:00-04:00,ok,CA-ON,79,13.699999999999998,gCO2eq/kWh
+2023-04-26 09:00:00-04:00,ok,CA-ON,79,13.83,gCO2eq/kWh
+2023-04-26 08:00:00-04:00,ok,CA-ON,61,10.02,gCO2eq/kWh
+2023-04-26 07:00:00-04:00,ok,CA-ON,57,9.13,gCO2eq/kWh
+2023-04-26 06:00:00-04:00,ok,CA-ON,41,5.9,gCO2eq/kWh
+2023-04-26 04:00:00-04:00,ok,CA-ON,36,4.79,gCO2eq/kWh
+2023-04-26 03:00:00-04:00,ok,CA-ON,34,4.43,gCO2eq/kWh
+2023-04-26 02:00:00-04:00,ok,CA-ON,38,5.27,gCO2eq/kWh
+2023-04-26 01:00:00-04:00,ok,CA-ON,81,14.16,gCO2eq/kWh
+2023-04-26 00:00:00-04:00,ok,CA-ON,74,12.85,gCO2eq/kWh
+2023-04-25 20:00:00-04:00,ok,CA-ON,60,9.9,gCO2eq/kWh
+>>>>>>> 5a17c0ae5 (Make timezones consistent)

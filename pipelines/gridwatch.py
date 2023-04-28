@@ -44,6 +44,7 @@ def clean_df(df: pd.DataFrame) -> pd.DataFrame:
     dt_index = extract_datetime_from_string_list(df.index)
     df = df.reset_index().loc[dt_index.index]
     df.index = dt_index.values
+    df = df.tz_localize(-5*60*60).tz_convert("America/Toronto")
     df = df.drop(columns="index")
     return df
 

@@ -11563,6 +11563,9 @@ Error,Error MW,Error MW,Error MW,Error MW,Error MW,Error tonnes,Error g/kWh,Erro
 "Fri Apr 28, 2 PM - 3 PM",11 MW,"2,135 MW","2,124 MW","16,795 MW","14,671 MW",465 tonnes,28 g/kWh,47.0%,31.3%,6.6%,13.9%,0.0%,1.2%,"7,902 MW","5,250 MW","1,108 MW","2,336 MW",0 MW,199 MW
 "Fri Apr 28, 3 PM - 4 PM",9 MW,"2,126 MW","2,117 MW","16,775 MW","14,658 MW",384 tonnes,23 g/kWh,47.1%,30.6%,5.3%,15.9%,0.0%,1.1%,"7,903 MW","5,140 MW",883 MW,"2,669 MW",0 MW,180 MW
 "Fri Apr 28, 4 PM - 5 PM",33 MW,"2,299 MW","2,266 MW","17,228 MW","14,962 MW",404 tonnes,23 g/kWh,45.9%,31.4%,5.4%,16.7%,0.0%,0.6%,"7,901 MW","5,415 MW",924 MW,"2,881 MW",0 MW,107 MW
+<<<<<<< HEAD
 =======
 "Fri Apr 28, 3 PM - 4 PM",9 MW,"2,126 MW","2,117 MW","16,775 MW","14,658 MW",384 tonnes,23 g/kWh,47.1%,30.6%,5.3%,15.9%,0.0%,1.1%,"7,903 MW","5,140 MW",883 MW,"2,669 MW",0 MW,180 MW
 >>>>>>> 0dca6b346 (update data)
+=======
+>>>>>>> 5a17c0ae5 (Make timezones consistent)

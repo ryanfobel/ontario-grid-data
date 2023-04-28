@@ -116,7 +116,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> pd.DataFrame:
     """Requests the last known production mix (in MW) of a given region."""
 
     dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRODUCTION_URL)
@@ -153,7 +153,18 @@ def fetch_production(
         )
     )
 
-    df = pd.DataFrame(all_productions)
+    return pd.DataFrame(all_productions)
+
+
+def fetch_production_by_fuel(
+    zone_key: str = "CA-ON",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Requests the last known production mix (in MW) of a given region."""
+
+    df = fetch_production(zone_key, session, target_datetime, logger)
 
     # group individual plants using the same fuel together for each time period
     by_fuel = df.groupby(["dt", "fuel"]).sum().unstack()
