@@ -2,7 +2,7 @@ import os
 import datetime as dt
 import json
 
-from .CA import fetch_production, fetch_price
+from .CA import fetch_production_by_fuel, fetch_price
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -11,7 +11,7 @@ CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "ieso.ca")
 
 def main():
     now = dt.datetime.utcnow()
-    output_json = fetch_production(target_datetime=now)
+    output_json = fetch_production_by_fuel(target_datetime=now)
     if output_json:
         output_json[-1]['datetime'] = output_json[-1]['datetime'].isoformat()
         output_path = os.path.join(CLEAN_DATA_PATH, "latest", "output.json")
