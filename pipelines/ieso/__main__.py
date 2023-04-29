@@ -5,15 +5,19 @@ import json
 import pandas as pd
 
 from .CA import fetch_production_by_fuel, fetch_production, fetch_price
-
-
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "ieso.ca")
+from .core import CLEAN_DATA_PATH, download_raw_data, download_raw_data_pre2019, cleanup_yearly_data
 
 
 def main():
     TZ = "America/Toronto"
     now = dt.datetime.utcnow()
+
+    # Get historical output data
+    download_raw_data()
+    download_raw_data_pre2019()
+    cleanup_yearly_data()
+
+    # Get latest data
     production_by_source = fetch_production_by_fuel(target_datetime=now)
     if production_by_source:
         production_by_source[-1]['datetime'] = pd.to_datetime(
