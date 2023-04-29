@@ -38,7 +38,7 @@ def update_hourly(
         filepath: str,
         hourly_path: str,
         tz: str="America/Toronto",
-        dt_column: str="data.datetime"
+        dt_column: str="datetime"
 ) -> pd.DataFrame:
     df_cached = pd.read_csv(hourly_path, index_col=0)
     df_cached.index = pd.to_datetime(df_cached.index)
