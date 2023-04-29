@@ -2,6 +2,8 @@ import os
 import datetime as dt
 import json
 
+import pandas as pd
+
 from .CA import fetch_production_by_fuel, fetch_price
 
 
@@ -13,7 +15,9 @@ def main():
     now = dt.datetime.utcnow()
     output_json = fetch_production_by_fuel(target_datetime=now)
     if output_json:
-        output_json[-1]['datetime'] = output_json[-1]['datetime'].isoformat()
+        output_json[-1]['datetime'] = pd.to_datetime(
+            output_json[-1]['datetime']
+        ).tz_convert("America/Toronto").isoformat()
         output_path = os.path.join(CLEAN_DATA_PATH, "latest", "output.json")
         print(output_path)
         with open(output_path, "w") as f:
@@ -21,7 +25,9 @@ def main():
 
     price_json = fetch_price(target_datetime=now)
     if price_json:
-        price_json[-1]['datetime'] = price_json[-1]['datetime'].isoformat()
+        price_json[-1]['datetime'] = pd.to_datetime(
+            price_json[-1]['datetime']
+        ).tz_convert("America/Toronto").isoformat()
         price_path = os.path.join(CLEAN_DATA_PATH, "latest", "price.json")
         print(price_path)
         with open(price_path, "w") as f:
