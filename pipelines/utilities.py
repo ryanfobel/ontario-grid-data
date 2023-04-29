@@ -54,6 +54,9 @@ def update_hourly(
             print("CalledProcessError:", e)
             print(f"No more git history for {filepath}")
             break
+        except KeyError as e:
+            print("KeyError:", e)
+            break
         if timestamp in df_cached.index:
             print(f"Timestamp {timestamp} already in index")
             break
