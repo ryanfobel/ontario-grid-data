@@ -82,7 +82,9 @@ def download_raw_data_pre2019():
 
             df = df[pd.notna(df["DATE"])]
             df["HOUR"] = df["HOUR"] - 1
-            df.index = pd.to_datetime([f'{row["DATE"].date().isoformat()} {int(row["HOUR"]):02}:00:00' for index, row in df.iterrows()])
+            df.index = pd.to_datetime(
+                [f'{row["DATE"].date().isoformat()} {int(row["HOUR"]):02}:00:00' for index, row in df.iterrows()]
+            ).tz_localize(-5*60*60).tz_convert("America/Toronto")
             df = df.drop(columns=["DATE", "HOUR"])
 
             # Add TOTAL column if it doesn't exist
@@ -115,7 +117,9 @@ def cleanup_monthly_data(df_input: pd.DataFrame, measurement: str="Output") -> p
     for date in df_input["Delivery Date"].unique():
         index = df_input[(df_input["Delivery Date"] == date) & output_mask].index
         df_output = df_input.loc[index, columns].set_index("Generator").T
-        df_output.index = pd.to_datetime([f"{date}T{x:02}:00:00" for x in range(24)])
+        df_output.index = pd.to_datetime(
+            [f"{date}T{x:02}:00:00" for x in range(24)]
+        ).tz_localize(-5*60*60).tz_convert("America/Toronto")
         df = pd.concat([
             df,
             df_output
