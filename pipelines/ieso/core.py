@@ -42,10 +42,11 @@ def get_historical_file_list_pre2019():
 
 
 def get_historical_file_list() -> pd.DataFrame:
+    tz = dt.timezone(dt.timedelta(hours=-5))
     dates = [
         dt.isoformat() for dt in pd.date_range(
-            "2019-05-01",
-            dt.datetime.now(dt.timezone(dt.timedelta(hours=-5))), freq='MS'
+            dt.datetime.strptime("2019-05-01", '%Y-%m-%d').astimezone(tz),
+            dt.datetime.now(tz), freq='MS'
         )
     ]
     df = pd.DataFrame({"date": dates})["date"].str.extract("(?P<year>\d{4})-(?P<month>\d{2})-\d{2}")
