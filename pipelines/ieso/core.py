@@ -42,7 +42,12 @@ def get_historical_file_list_pre2019():
 
 
 def get_historical_file_list() -> pd.DataFrame:
-    dates = [dt.isoformat() for dt in pd.date_range("2019-05-01", dt.datetime.now(), freq='MS')]
+    dates = [
+        dt.isoformat() for dt in pd.date_range(
+            "2019-05-01",
+            dt.datetime.now(dt.timezone(dt.timedelta(hours=-5))), freq='MS'
+        )
+    ]
     df = pd.DataFrame({"date": dates})["date"].str.extract("(?P<year>\d{4})-(?P<month>\d{2})-\d{2}")
     df["filepath"] = (
         os.path.join(RAW_DATA_PATH, "PUB_GenOutputCapabilityMonth_") +
