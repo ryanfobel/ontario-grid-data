@@ -102,10 +102,16 @@ def download_raw_data():
     historical_files = get_historical_file_list()
 
     for index, row in historical_files.iterrows():
-        download_url(row["url"], ext=".csv")
+        try:
+            download_url(row["url"], ext=".csv")
+        except RuntimeError as e:
+            print(e)
 
     # Force download of most recent month
-    download_url(row["url"], ext=".csv", force=True)
+    try:
+        download_url(row["url"], ext=".csv", force=True)
+    except RuntimeError as e:
+        print(e)
 
     return [os.path.abspath(p) for p in historical_files["filepath"]]
 

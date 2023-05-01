@@ -13,8 +13,11 @@ def main():
     now = dt.datetime.utcnow()
 
     # Get historical output data
+    print("Download raw data")
     download_raw_data()
     download_raw_data_pre2019()
+
+    print("Cleanup yearly data")
     cleanup_yearly_data()
 
     # Get latest data
