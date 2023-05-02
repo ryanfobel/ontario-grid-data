@@ -68,21 +68,27 @@ def convert_gas_table_to_df(table):
 
 
 def main():
-    with open(ELECTRICITY_RATES_FILEPATH, "r") as f:
-        soup = BeautifulSoup(f.read(), "html.parser")
-    rate_types = [h2.contents[1] for h2 in soup.find_all(name="h2") if len(h2.contents) > 1]
-    tables = soup.find_all(name="table")
-    for rate_type, table in zip(rate_types, tables):
-        df = convert_electricity_table_to_df(table)
-        df.to_csv(os.path.join(CLEAN_DATA_PATH, "electricity", f"{rate_type}.csv"))
+    try:
+        with open(ELECTRICITY_RATES_FILEPATH, "r") as f:
+            soup = BeautifulSoup(f.read(), "html.parser")
+        rate_types = [h2.contents[1] for h2 in soup.find_all(name="h2") if len(h2.contents) > 1]
+        tables = soup.find_all(name="table")
+        for rate_type, table in zip(rate_types, tables):
+            df = convert_electricity_table_to_df(table)
+            df.to_csv(os.path.join(CLEAN_DATA_PATH, "electricity", f"{rate_type}.csv"))
+    except Exception as e:
+        print("Error extracting electricity rates:", e)
 
-    with open(GAS_RATES_FILEPATH, "r") as f:
-        soup = BeautifulSoup(f.read(), "html.parser")
-    zones = [h2.contents[1] for h2 in soup.find_all(name="h2") if len(h2.contents) > 1]
-    tables = soup.find_all(name="table")
-    for zone, table in zip(zones, tables):
-        df = convert_gas_table_to_df(table)
-        df.to_csv(os.path.join(CLEAN_DATA_PATH, "natural gas", f"{zone}.csv"))
+    try:
+        with open(GAS_RATES_FILEPATH, "r") as f:
+            soup = BeautifulSoup(f.read(), "html.parser")
+        zones = [h2.contents[1] for h2 in soup.find_all(name="h2") if len(h2.contents) > 1]
+        tables = soup.find_all(name="table")
+        for zone, table in zip(zones, tables):
+            df = convert_gas_table_to_df(table)
+            df.to_csv(os.path.join(CLEAN_DATA_PATH, "natural gas", f"{zone}.csv"))
+    except Exception as e:
+        print("Error extracting natural gas rates:", e)
 
 if __name__ == "__main__":
     main()
