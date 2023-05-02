@@ -46,6 +46,7 @@ jobs:
         python -m pipelines.co2signal
         python -m pipelines.gridwatch
         python -m pipelines.ieso
+        python -m pipelines.oeb
     - name: Commit
       continue-on-error: true
       run: |
