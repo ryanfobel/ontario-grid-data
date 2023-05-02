@@ -146,11 +146,14 @@ def cleanup_yearly_data():
         print(row["year"], row["month"])
         if row["year"] not in yearly_data.keys():
             yearly_data[row["year"]] = pd.DataFrame()
-        
-        yearly_data[row["year"]] = pd.concat([
-            yearly_data[row["year"]],
-            cleanup_monthly_data(pd.read_csv(row["filepath"], skiprows=3, index_col=False))
-        ], axis=0)
+
+        try:        
+            yearly_data[row["year"]] = pd.concat([
+                yearly_data[row["year"]],
+                cleanup_monthly_data(pd.read_csv(row["filepath"], skiprows=3, index_col=False))
+            ], axis=0)
+        except FileNotFoundError as e:
+            print(f"File {row['filepath']} not found.", str(e))
 
     for year, df in yearly_data.items():
         df.to_csv(os.path.join(CLEAN_DATA_PATH, "hourly", "output", f"{year}.csv"))
