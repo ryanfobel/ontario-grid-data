@@ -1,0 +1,89 @@
+import os
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "oeb.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "oeb.ca")
+ELECTRICITY_RATES_FILEPATH = os.path.abspath(os.path.join(RAW_DATA_PATH, "historcial-electricity-rates.html"))
+GAS_RATES_FILEPATH = os.path.abspath(os.path.join(RAW_DATA_PATH, "historcial-natural-gas-rates.html"))
+
+
+def get_electricity_rates():
+    response = requests.get("https://www.oeb.ca/consumer-information-and-protection/electricity-rates/historical-electricity-rates")
+    with open(ELECTRICITY_RATES_FILEPATH, "w") as f:
+        f.write(response.content.decode("utf-8"))
+
+
+def get_gas_rates():
+    response = requests.get("https://www.oeb.ca/consumer-information-and-protection/natural-gas-rates/historical-natural-gas-rates")
+    with open(GAS_RATES_FILEPATH, "w") as f:
+        f.write(response.content.decode("utf-8"))
+
+
+def convert_electricity_table_to_df(table):
+    rows = table.find_all(name="tr")
+    headers = [th.text.replace("\xa0", " ") for th in rows[0].find_all("th")]
+    rows = [[td.text.replace("\n", "").replace("*", "") for td in tr.find_all(name="td")] for tr in rows[1:]]
+    df = pd.DataFrame(rows, columns=headers).set_index("Effective date")
+    df.index = pd.to_datetime(df.index)
+    for col in df.columns:
+        df[col] = (
+            df[col].str.replace(" ¢ per kWh", "")
+            .str.replace("\xa0", " ")
+        )
+    if "Residential threshold for lower tier price (kWh per month)" in df.columns:
+        pat = r"(?P<summer>\S+) \(Summer\)\t\t\t(?P<winter>\S+) \(Winter\)"
+        special = df['Residential threshold for lower tier price (kWh per month)'].str.extract(pat).dropna()
+        df["Residential threshold for lower tier price (kWh per month) [Summer]"] = df["Residential threshold for lower tier price (kWh per month)"]
+        df["Residential threshold for lower tier price (kWh per month) [Winter]"] = df["Residential threshold for lower tier price (kWh per month)"]
+        df = df.drop(columns=["Residential threshold for lower tier price (kWh per month)"])
+        df.loc[special.index, "Residential threshold for lower tier price (kWh per month) [Summer]"] = special["summer"]
+        df.loc[special.index, "Residential threshold for lower tier price (kWh per month) [Winter]"] = special["winter"]
+        na_index = df[df["Higher tier price (¢ per kWh)"].isna()].index
+        df.loc[na_index, "Higher tier price (¢ per kWh)"] = df.loc[na_index, "Lower tier price (¢ per kWh)"]
+
+    for col in df.columns:
+        df[col] = df[col].str.replace(",", "").astype(float)
+
+    return df
+
+
+def convert_gas_table_to_df(table):
+    rows = table.find_all(name="tr")
+    headers = [th.text.replace("\xa0", " ").replace("\n", "") for th in rows[0].find_all("th")]
+    rows = [[td.text.replace("\n", "").replace("*", "") for td in tr.find_all(name="td")] for tr in rows[1:]]
+    df = pd.DataFrame(rows, columns=headers).set_index("Date")
+    df.index = pd.to_datetime(df.index)
+    for col in df.columns:
+        df[col] = (
+            df[col].str.replace(",", "").replace("-", "").replace(" ", "").
+            replace("\xa0", "").replace("", "nan").astype(float)
+        )
+    return df
+
+
+def main():
+    with open(ELECTRICITY_RATES_FILEPATH, "r") as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
+    rate_types = [h2.contents[1] for h2 in soup.find_all(name="h2") if len(h2.contents) > 1]
+    tables = soup.find_all(name="table")
+    for rate_type, table in zip(rate_types, tables):
+        df = convert_electricity_table_to_df(table)
+        df.to_csv(os.path.join(CLEAN_DATA_PATH, "electricity", f"{rate_type}.csv"))
+
+    with open(GAS_RATES_FILEPATH, "r") as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
+    zones = [h2.contents[1] for h2 in soup.find_all(name="h2") if len(h2.contents) > 1]
+    tables = soup.find_all(name="table")
+    for zone, table in zip(zones, tables):
+        df = convert_gas_table_to_df(table)
+        df.to_csv(os.path.join(CLEAN_DATA_PATH, "natural gas", f"{zone}.csv"))
+
+if __name__ == "__main__":
+    main()
