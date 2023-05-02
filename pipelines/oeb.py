@@ -68,6 +68,7 @@ def convert_gas_table_to_df(table):
 
 
 def main():
+    get_electricity_rates()
     try:
         with open(ELECTRICITY_RATES_FILEPATH, "r") as f:
             soup = BeautifulSoup(f.read(), "html.parser")
@@ -79,6 +80,7 @@ def main():
     except Exception as e:
         print("Error extracting electricity rates:", e)
 
+    get_gas_rates()
     try:
         with open(GAS_RATES_FILEPATH, "r") as f:
             soup = BeautifulSoup(f.read(), "html.parser")
