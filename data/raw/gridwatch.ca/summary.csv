@@ -11837,3 +11837,4 @@ Error,Error MW,Error MW,Error MW,Error MW,Error MW,Error tonnes,Error g/kWh,Erro
 "Thu May 11, 11 PM - 12 AM",45 MW,"1,975 MW","1,930 MW","15,142 MW","13,212 MW",268 tonnes,18 g/kWh,57.0%,34.2%,3.8%,5.0%,0.0%,0.0%,"8,636 MW","5,172 MW",573 MW,761 MW,0 MW,0 MW
 "Thu May 11, 12 AM - 1 AM",91 MW,"2,562 MW","2,471 MW","14,866 MW","12,395 MW",155 tonnes,10 g/kWh,58.1%,33.9%,2.1%,5.9%,0.0%,0.0%,"8,639 MW","5,036 MW",310 MW,881 MW,0 MW,0 MW
 "Thu May 11, 1 AM - 2 AM",50 MW,"3,052 MW","3,002 MW","14,862 MW","11,860 MW",90 tonnes,6 g/kWh,58.1%,31.8%,1.0%,9.1%,0.0%,0.0%,"8,635 MW","4,724 MW",155 MW,"1,348 MW",0 MW,0 MW
+"Thu May 11, 2 AM - 3 AM",50 MW,"3,174 MW","3,124 MW","14,618 MW","11,494 MW",140 tonnes,10 g/kWh,59.1%,30.4%,1.9%,8.6%,0.0%,0.0%,"8,642 MW","4,444 MW",273 MW,"1,259 MW",0 MW,0 MW
