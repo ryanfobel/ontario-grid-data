@@ -1,10 +1,10 @@
 {
     "data": {
-        "carbonIntensity": 31,
-        "fossilFuelPercentage": 4.04
+        "carbonIntensity": 28,
+        "fossilFuelPercentage": 3.1400000000000006
     },
     "units": {
         "carbonIntensity": "gCO2eq/kWh"
     },
-    "datetime": "2023-05-19T18:00:00-04:00"
+    "datetime": "2023-05-19T19:00:00-04:00"
 }
