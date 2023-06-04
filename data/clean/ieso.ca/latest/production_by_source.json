@@ -1,13 +1,13 @@
 {
-    "datetime": "2023-06-03T23:00:00-04:00",
+    "datetime": "2023-06-04T00:00:00-04:00",
     "zoneKey": "CA-ON",
     "production": {
-        "biomass": 74.0,
-        "gas": 1162.0,
-        "hydro": 4513.0,
-        "nuclear": 8425.0,
+        "biomass": 31.0,
+        "gas": 665.0,
+        "hydro": 4333.0,
+        "nuclear": 8430.0,
         "solar": 0.0,
-        "wind": 2133.0
+        "wind": 2233.0
     },
     "storage": {},
     "source": "ieso.ca"
