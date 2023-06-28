@@ -1,12 +1,12 @@
 {
-    "datetime": "2023-06-27T19:00:00-04:00",
+    "datetime": "2023-06-27T21:00:00-04:00",
     "zoneKey": "CA-ON",
     "production": {
-        "biomass": 139.0,
-        "gas": 4058.0,
-        "hydro": 4247.0,
-        "nuclear": 9311.0,
-        "solar": 65.0,
+        "biomass": 90.0,
+        "gas": 3367.0,
+        "hydro": 4160.0,
+        "nuclear": 9319.0,
+        "solar": 5.0,
         "wind": 2044.0
     },
     "storage": {},
