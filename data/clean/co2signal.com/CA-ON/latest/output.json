@@ -1,7 +1,7 @@
 {
     "data": {
-        "carbonIntensity": 122,
-        "fossilFuelPercentage": 23.21
+        "carbonIntensity": 120,
+        "fossilFuelPercentage": 22.66
     },
     "units": {
         "carbonIntensity": "gCO2eq/kWh"
