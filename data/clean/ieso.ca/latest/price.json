@@ -1,6 +1,6 @@
 {
-    "datetime": "2023-12-01T22:00:00-05:00",
-    "price": 35.94,
+    "datetime": "2023-12-01T23:00:00-05:00",
+    "price": 35.67,
     "currency": "CAD",
     "source": "ieso.ca",
     "zoneKey": "CA-ON"
