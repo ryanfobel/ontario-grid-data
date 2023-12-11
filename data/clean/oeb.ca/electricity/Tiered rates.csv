@@ -1,4 +1,5 @@
 Effective date,Lower tier price (¢ per kWh),Higher tier price (¢ per kWh),Residential threshold for lower tier price (kWh per month) [Summer],Residential threshold for lower tier price (kWh per month) [Winter]
+2023-11-01,10.3,12.5,600.0,1000.0
 2022-11-01,8.7,10.3,600.0,1000.0
 2022-02-08,9.8,11.5,1000.0,1000.0
 2022-01-18,8.2,8.2,1000.0,1000.0
@@ -38,4 +39,4 @@ Effective date,Lower tier price (¢ per kWh),Higher tier price (¢ per kWh),Resi
 2005-11-01,5.0,5.8,1000.0,1000.0
 2005-04-01,5.0,5.8,750.0,750.0
 2004-04-01,4.7,5.5,750.0,750.0
-2002-12-09,4.3,4.3,,
+2002-12-09,4.3,4.3,0.0,0.0
