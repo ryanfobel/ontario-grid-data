@@ -9,6 +9,7 @@ from selenium.common.exceptions import (
     NoSuchElementException,
     StaleElementReferenceException,
 )
+from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 import requests
 
@@ -162,7 +163,8 @@ def load_page(driver):
 
     # Wait for the page to load
     while timeOfReading == "updating data...":
-        timeOfReading = driver.find_element_by_xpath(
+        timeOfReading = driver.find_element(
+            By.XPATH,
             f'//span[@bind="timeOfReading"]/parent::div'
         ).text
 
@@ -182,7 +184,8 @@ def scrape_summary_data(driver, timeOfReading):
 
     data = {}
     for key in ["imports", "exports", "netImportExports"]:
-        data[key] = driver.find_element_by_xpath(
+        data[key] = driver.find_element(
+            By.XPATH,
             f'//span[@bind="{ key }"]/parent::div'
         ).text
 
@@ -192,13 +195,15 @@ def scrape_summary_data(driver, timeOfReading):
         "TOTAL EMISSIONS",
         "CO2e INTENSITY",
     ]:
-        data[key] = driver.find_element_by_xpath(
+        data[key] = driver.find_element(
+            By.XPATH,
             f"//p[contains(text(), '{ key }')]/parent::div/following-sibling::div"
         ).text
 
     for metric in ["Percentage", "Output"]:
         for source in ["nuclear", "hydro", "gas", "wind", "biofuel", "solar"]:
-            data[source + metric] = driver.find_element_by_xpath(
+            data[source + metric] = driver.find_element(
+                By.XPATH,
                 f'//span[@bind="{ source + metric }"]/parent::div'
             ).text
 
@@ -211,14 +216,18 @@ def scrape_summary_data(driver, timeOfReading):
 
 def scrape_plant_level_data(driver):
     df = pd.DataFrame()
-    for source in driver.find_elements_by_xpath('//td[@class="energy-source-title"]'):
+    for source in driver.find_elements(
+        By.XPATH,
+        '//td[@class="energy-source-title"]'
+    ):
         source.click()
 
         data = {}
         for key in ["name", "output", "capability"]:
             data[key] = [
                 e.text
-                for e in driver.find_elements_by_xpath(
+                for e in driver.find_elements(
+                    By.XPATH,
                     f'//td[@class="power-plant-{ key }-data"]'
                 )[2:]
                 if e.text

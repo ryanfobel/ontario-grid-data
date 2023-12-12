@@ -93,7 +93,7 @@ def convert_gas_table_to_df(table):
     df = convert_table_to_df(table)
     df = df.set_index("Date")
     df = df.drop(columns="Detailed rates")
-    df.index = pd.to_datetime(df.index)
+    df.index = pd.to_datetime(df.index, format="%b %Y")
 
     if "Gas cost adjustment (¢/m³)" in df.columns:
         na_index = df[df["Gas cost adjustment (¢/m³)"] == "-"].index

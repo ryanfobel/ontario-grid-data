@@ -41,7 +41,7 @@ def update_hourly(
         dt_column: str="datetime"
 ) -> pd.DataFrame:
     df_cached = pd.read_csv(hourly_path, index_col=0)
-    df_cached.index = pd.to_datetime(df_cached.index)
+    df_cached.index = pd.to_datetime(df_cached.index, utc=True).tz_convert(tz)
 
     i = 1
     data = []

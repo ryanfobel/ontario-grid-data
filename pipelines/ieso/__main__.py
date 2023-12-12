@@ -10,7 +10,7 @@ from .core import CLEAN_DATA_PATH, download_raw_data, download_raw_data_pre2019,
 
 def main():
     TZ = "America/Toronto"
-    now = dt.datetime.utcnow()
+    now = dt.datetime.now(dt.UTC)
 
     # Get historical output data
     print("Download raw data")
