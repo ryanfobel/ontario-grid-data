@@ -47,9 +47,14 @@ def update_hourly(
     data = []
     while True:
         try:
-            data.append(get_historical_json_from_git(filepath, i))
-            timestamp = pd.to_datetime(pd.json_normalize(data[-1])[dt_column][0])
-            i += 1
+            row = get_historical_json_from_git(filepath, i)
+            timestamp = pd.to_datetime(pd.json_normalize(row)[dt_column][0], utc=True).tz_convert(tz)
+            if timestamp in df_cached.index:
+                print(f"Timestamp {timestamp} already in index")
+                break
+            else:
+                data.append(row)
+                i += 1
         except CalledProcessError as e:
             print("CalledProcessError:", e)
             print(f"No more git history for {filepath}")
@@ -57,20 +62,16 @@ def update_hourly(
         except KeyError as e:
             print("KeyError:", e)
             break
-        if timestamp in df_cached.index:
-            print(f"Timestamp {timestamp} already in index")
-            break
-    if not len(data):
-        return None
-
-    df = pd.json_normalize(data)
-    df = df.set_index(dt_column)
-    df = pd.concat([
-        df,
-        df_cached
-    ], axis=0)
-    df.index = pd.to_datetime(df.index, utc=True)
-    df = df.tz_convert(tz)
-    df = df[[col for col in df.columns if not col.startswith("_")]].drop_duplicates()
-    df.to_csv(hourly_path)
-    return df
+    if len(data):
+        df = pd.json_normalize(data)
+        df = df.set_index(dt_column)
+        df.index = pd.to_datetime(df.index, utc=True).tz_convert(tz)
+        df = pd.concat([
+            df,
+            df_cached
+        ], axis=0)
+        df = df[[col for col in df.columns if not col.startswith("_")]].drop_duplicates()
+        df.to_csv(hourly_path)
+        return df
+    else:
+        return df_cached
