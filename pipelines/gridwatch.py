@@ -16,10 +16,10 @@ import requests
 ROOT = os.path.dirname(os.path.abspath(__file__))
 RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "gridwatch.ca")
 CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "gridwatch.ca", "hourly")
-
+TZ = "America/Toronto"
 
 def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:
-    df.index = pd.to_datetime(df.index)
+    df.index = pd.to_datetime(df.index, utc=True).tz_convert(TZ)
     return df
 
 
@@ -45,7 +45,7 @@ def clean_df(df: pd.DataFrame) -> pd.DataFrame:
     dt_index = extract_datetime_from_string_list(df.index)
     df = df.reset_index().loc[dt_index.index]
     df.index = dt_index.values
-    df = df.tz_localize(-5*60*60).tz_convert("America/Toronto")
+    df = df.tz_localize(-5*60*60).tz_convert(TZ)
     df = df.drop(columns="index")
     return df
 
@@ -243,7 +243,7 @@ def scrape_plant_level_data(driver):
 def get_row_from_plant_level_data(driver, timeOfReading, df_plant_level_data, key):
     filename = os.path.join(RAW_DATA_PATH, key + ".csv")
     if os.path.exists(filename):
-        df_out = pd.read_csv(filename, index_col=0)
+        df_out = pd.read_csv(filename, index_col=0, low_memory=False)
     else:
         df_out = pd.DataFrame()
 
