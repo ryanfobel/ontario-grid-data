@@ -5,7 +5,7 @@ import json
 import pandas as pd
 
 from .CA import fetch_production_by_fuel, fetch_production, fetch_price
-from .core import CLEAN_DATA_PATH, download_raw_data, download_raw_data_pre2019, cleanup_yearly_data
+from .core import CLEAN_DATA_PATH, download_raw_data, cleanup_yearly_data
 
 
 def main():
@@ -15,7 +15,6 @@ def main():
     # Get historical output data
     print("Download raw data")
     download_raw_data()
-    download_raw_data_pre2019()
 
     print("Cleanup yearly data")
     cleanup_yearly_data()
