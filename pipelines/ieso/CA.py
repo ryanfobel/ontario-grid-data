@@ -122,7 +122,7 @@ def fetch_production(
     dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRODUCTION_URL)
 
     if not xml:
-        return []
+        return pd.DataFrame()
 
     generators = (
         xml.find(XML_NS_TEXT + "IMODocBody")
@@ -165,6 +165,9 @@ def fetch_production_by_fuel(
     """Requests the last known production mix (in MW) of a given region."""
 
     df = fetch_production(zone_key, session, target_datetime, logger)
+
+    if len(df) == 0:
+        return []
 
     # group individual plants using the same fuel together for each time period
     by_fuel = df.groupby(["dt", "fuel"]).sum().unstack()
