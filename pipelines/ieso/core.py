@@ -158,7 +158,7 @@ def cleanup_yearly_data():
         if os.path.exists(output_path):
             df = pd.read_csv(output_path, index_col=0, low_memory=False)
             df.index = pd.to_datetime(df.index, utc=True).tz_convert("America/Toronto")
-            if row["month"] <= (max(df.index) - pd.Timedelta(days=1)).month:
+            if len(df) and (row["month"] <= (max(df.index) - pd.Timedelta(days=1)).month):
                 continue
         else:
             df = pd.DataFrame()
