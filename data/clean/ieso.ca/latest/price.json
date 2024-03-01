@@ -1,6 +1,6 @@
 {
-    "datetime": "2024-03-01T14:00:00-05:00",
-    "price": 24.3,
+    "datetime": "2024-03-01T15:00:00-05:00",
+    "price": 23.4,
     "currency": "CAD",
     "source": "ieso.ca",
     "zoneKey": "CA-ON"
