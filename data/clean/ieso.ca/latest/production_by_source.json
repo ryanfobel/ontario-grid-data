@@ -1,11 +1,11 @@
 {
-    "datetime": "2024-03-30T21:00:00-04:00",
+    "datetime": "2024-03-30T22:00:00-04:00",
     "zoneKey": "CA-ON",
     "production": {
-        "biomass": 55.0,
-        "gas": 3659.0,
-        "hydro": 4851.0,
-        "nuclear": 7436.0,
+        "biomass": 53.0,
+        "gas": 3687.0,
+        "hydro": 4625.0,
+        "nuclear": 7437.0,
         "solar": 0.0,
         "wind": 164.0
     },
