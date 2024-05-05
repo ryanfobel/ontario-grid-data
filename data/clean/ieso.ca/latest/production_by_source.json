@@ -1,13 +1,13 @@
 {
-    "datetime": "2024-05-05T13:00:00-04:00",
+    "datetime": "2024-05-05T14:00:00-04:00",
     "zoneKey": "CA-ON",
     "production": {
         "biomass": 0.0,
         "gas": 3830.0,
-        "hydro": 5366.0,
-        "nuclear": 5299.0,
-        "solar": 120.0,
-        "wind": 1153.0
+        "hydro": 5202.0,
+        "nuclear": 5304.0,
+        "solar": 141.0,
+        "wind": 1363.0
     },
     "storage": {},
     "source": "ieso.ca"
