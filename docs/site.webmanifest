@@ -1,6 +1,6 @@
 {
-  "name": "Ontario energy dashboard",
-  "short_name": "Ontario energy dashboard",
+  "name": "Ontario grid data",
+  "short_name": "Ontario grid data",
   "start_url": "index.html",
   "icons": [
     {
