@@ -1,5 +1,5 @@
 const appName = 'Ontario energy dashboard'
-const appCacheName = 'Ontario energy dashboard-bf969b77348743bb89d500e102885822';
+const appCacheName = 'Ontario energy dashboard-a65a334981224c93b77a028ab9d6d175';
 
 const preCacheFiles = ['images/favicon.ico', 'images/icon-vector.svg', 'images/icon-32x32.png', 'images/icon-192x192.png', 'images/icon-512x512.png', 'images/apple-touch-icon.png', 'images/index_background.png'];
 
