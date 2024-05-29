@@ -29,7 +29,7 @@ jobs:
     #    poetry-version: 1.1.0
     - name: Install dependencies
       run: |
-        pip install selenium==4.2.0 pandas python-dotenv arrow matplotlib
+        pip install selenium==4.2.0 panel pandas numpy holoviews hvplot pyarrow arrow matplotlib python-dotenv nbconvert
         pip install git+https://github.com/zaironjacobs/get-gecko-driver@main#egg=get_gecko_driver
         get-gecko-driver --download-latest --extract    
     #- name: Poetry install
@@ -39,18 +39,27 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: Run scraper
+    - name: Run co2signal scraper
       env:
         CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
       run: |
         python -m pipelines.co2signal
+    - name: Run gridwatch scraper
+      run: |
         python -m pipelines.gridwatch
+    - name: Run ieso scraper
+      run: |
         python -m pipelines.ieso
+    - name: Run oeb scraper
+      run: |
         python -m pipelines.oeb
+    - name: Build panel pwa dashboard
+      run: |
+        python -m panel convert notebooks/index.ipynb --to pyodide-worker --out docs --pwa --title "Ontario grid data"
     - name: Commit
       continue-on-error: true
       run: |
         # Stage the file, commit and push
-        git add data
-        git commit -m "update data"
+        git add data notebooks docs
+        git commit -m "update"
         git push origin main
