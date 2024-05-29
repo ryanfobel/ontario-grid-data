@@ -56,7 +56,7 @@ jobs:
     - name: Build panel pwa dashboard
       run: |
         python -m panel convert notebooks/index.ipynb --to pyodide-worker --out docs --pwa --title "Ontario grid data"
-        cp images/icons/* docs/images/
+        cp notebooks/images/* docs/images/
     - name: Commit
       continue-on-error: true
       run: |
