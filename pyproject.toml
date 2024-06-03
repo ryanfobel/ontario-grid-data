@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 dynamic = ["version"]
+name = "ontario_grid_data"
 
 [tool.setuptools-git-versioning]
 enabled = true

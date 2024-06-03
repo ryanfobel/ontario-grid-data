@@ -23,18 +23,14 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install python3-venv firefox
-    #- name: Install poetry
-    #  uses: abatilo/actions-poetry@v2.0.0
-    #  with:
-    #    poetry-version: 1.1.0
     - name: Install dependencies
       run: |
         pip install selenium==4.2.0 panel pandas numpy holoviews hvplot pyarrow arrow matplotlib python-dotenv nbconvert setuptools-git-versioning
         pip install git+https://github.com/zaironjacobs/get-gecko-driver@main#egg=get_gecko_driver
         get-gecko-driver --download-latest --extract    
-    #- name: Poetry install
-    #  run: |
-    #    poetry install
+    - name: Pip install
+      run: |
+        pip install .
     - name: Setup git config
       run: |
         git config user.name "GitHub Actions Bot"
@@ -43,21 +39,20 @@ jobs:
       env:
         CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
       run: |
-        python -m pipelines.co2signal
+        python -m ontario_grid_data.co2signal
     - name: Run gridwatch scraper
       run: |
-        python -m pipelines.gridwatch
+        python -m ontario_grid_data.gridwatch
     - name: Run ieso scraper
       run: |
-        python -m pipelines.ieso
+        python -m ontario_grid_data.ieso
     - name: Run oeb scraper
       run: |
-        python -m pipelines.oeb
+        python -m ontario_grid_data.oeb
     - name: Build panel pwa dashboard
       run: |
-        python -m panel convert notebooks/index.ipynb --to pyodide-worker --out docs --pwa --title "Ontario grid data"
+        python -m panel convert notebooks/index.ipynb --compiled --to pyodide-worker --out docs --pwa --title "Ontario grid data"
         cp notebooks/images/* docs/images/
-        python -m setuptools_git_versioning > docs/VERSION
     - name: Commit
       continue-on-error: true
       run: |
