@@ -7,8 +7,8 @@ import pandas as pd
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "ieso.ca")
-RAW_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "raw", "ieso.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "..", "data", "clean", "ieso.ca")
+RAW_DATA_PATH = os.path.join(ROOT, "..", "..", "..", "data", "raw", "ieso.ca")
 
 
 def download_url(url, filepath, force=False):
