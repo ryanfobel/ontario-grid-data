@@ -8,4 +8,4 @@ dependencies:
   - selenium
   - openpyxl
   - arrow
-  
+  - setuptools-git-versioning

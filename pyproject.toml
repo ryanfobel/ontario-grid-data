@@ -1,0 +1,13 @@
+[build-system]
+requires = [ "setuptools>=41", "wheel", "setuptools-git-versioning>=2.0,<3", ]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+
+[tool.setuptools-git-versioning]
+enabled = true
+version_file = "VERSION"
+count_commits_from_version_file = true  # <--- enable commits tracking
+dev_template = "{tag}.dev{ccount}"  # suffix for versions will be .dev
+dirty_template = "{tag}.dev{ccount}"  # same thing here
