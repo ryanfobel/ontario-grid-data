@@ -39,16 +39,16 @@ jobs:
       env:
         CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
       run: |
-        python -m ontario_grid_data.co2signal
+        python -m src.ontario_grid_data.co2signal
     - name: Run gridwatch scraper
       run: |
-        python -m ontario_grid_data.gridwatch
+        python -m src.ontario_grid_data.gridwatch
     - name: Run ieso scraper
       run: |
-        python -m ontario_grid_data.ieso
+        python -m src.ontario_grid_data.ieso
     - name: Run oeb scraper
       run: |
-        python -m ontario_grid_data.oeb
+        python -m src.ontario_grid_data.oeb
     - name: Build panel pwa dashboard
       run: |
         python -m panel convert notebooks/index.ipynb --compiled --to pyodide-worker --out docs --pwa --title "Ontario grid data"

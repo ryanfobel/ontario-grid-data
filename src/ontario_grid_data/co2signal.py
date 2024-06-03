@@ -11,8 +11,8 @@ from .utilities import update_hourly
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "co2signal.com")
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "co2signal.com")
+RAW_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "raw", "co2signal.com")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "co2signal.com")
 
 
 def co2signal_get_latest(token: str, country_code: str="CA-ON") -> dict:

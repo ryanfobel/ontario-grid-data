@@ -14,8 +14,8 @@ from dotenv import load_dotenv
 import requests
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "gridwatch.ca")
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "gridwatch.ca", "hourly")
+RAW_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "raw", "gridwatch.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "gridwatch.ca", "hourly")
 TZ = "America/Toronto"
 
 def convert_index_to_datetime(df: pd.DataFrame) -> pd.DataFrame:

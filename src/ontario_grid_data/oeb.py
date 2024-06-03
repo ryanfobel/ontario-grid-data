@@ -7,8 +7,8 @@ import numpy as np
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-RAW_DATA_PATH = os.path.join(ROOT, "..", "data", "raw", "oeb.ca")
-CLEAN_DATA_PATH = os.path.join(ROOT, "..", "data", "clean", "oeb.ca")
+RAW_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "raw", "oeb.ca")
+CLEAN_DATA_PATH = os.path.join(ROOT, "..", "..", "data", "clean", "oeb.ca")
 ELECTRICITY_RATES_FILEPATH = os.path.abspath(os.path.join(RAW_DATA_PATH, "historcial-electricity-rates.html"))
 GAS_RATES_FILEPATH = os.path.abspath(os.path.join(RAW_DATA_PATH, "historcial-natural-gas-rates.html"))
 
