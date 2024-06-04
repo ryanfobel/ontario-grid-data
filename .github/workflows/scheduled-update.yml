@@ -48,8 +48,7 @@ jobs:
         python -m src.ontario_grid_data.oeb
     - name: Build panel pwa dashboard
       run: |
-        VERSION=`python -m setuptools_git_versioning`
-        sed 's/__REPLACE_WITH_VERSION_NUMBER__/${{ VERSION }}/g' notebooks/index.ipynb > build/index.ipynb
+        sed 's/__REPLACE_WITH_VERSION_NUMBER__/$(python -m setuptools_git_versioning)/g' notebooks/index.ipynb > build/index.ipynb
         python -m panel convert build/index.ipynb --compiled --to pyodide-worker --out docs --pwa --title "Ontario grid data"
         cp notebooks/images/* docs/images/
     - name: Commit
