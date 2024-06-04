@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - fix-action
 
 jobs:
   update:
@@ -52,7 +51,7 @@ jobs:
         VERSION=$(python -m setuptools_git_versioning)
         mkdir -p build
         cp notebooks/index.ipynb build/index.ipynb
-        sed -i 's/__REPLACE_WITH_VERSION_NUMBER__/${VERSION}/g' build/index.ipynb
+        sed -i "s/__REPLACE_WITH_VERSION_NUMBER__/$VERSION/g" build/index.ipynb
         python -m panel convert build/index.ipynb --compiled --to pyodide-worker --out docs --pwa --title "Ontario grid data"
         cp notebooks/images/* docs/images/
     - name: Commit
