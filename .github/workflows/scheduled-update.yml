@@ -28,9 +28,6 @@ jobs:
         pip install selenium==4.2.0 panel pandas numpy holoviews hvplot pyarrow arrow matplotlib python-dotenv nbconvert setuptools-git-versioning
         pip install git+https://github.com/zaironjacobs/get-gecko-driver@main#egg=get_gecko_driver
         get-gecko-driver --download-latest --extract    
-    - name: Pip install
-      run: |
-        pip install .
     - name: Setup git config
       run: |
         git config user.name "GitHub Actions Bot"
