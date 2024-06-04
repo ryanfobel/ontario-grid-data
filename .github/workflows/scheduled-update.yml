@@ -28,32 +28,31 @@ jobs:
         pip install selenium==4.2.0 panel pandas numpy holoviews hvplot pyarrow arrow matplotlib python-dotenv nbconvert setuptools-git-versioning
         pip install git+https://github.com/zaironjacobs/get-gecko-driver@main#egg=get_gecko_driver
         get-gecko-driver --download-latest --extract    
-    - name: Setup git config
-      run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
-    - name: Run co2signal scraper
-      env:
-        CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
-      run: |
-        python -m src.ontario_grid_data.co2signal
-    - name: Run gridwatch scraper
-      run: |
-        python -m src.ontario_grid_data.gridwatch
-    - name: Run ieso scraper
-      run: |
-        python -m src.ontario_grid_data.ieso
-    - name: Run oeb scraper
-      run: |
-        python -m src.ontario_grid_data.oeb
+    # - name: Setup git config
+    #   run: |
+    #     git config user.name "GitHub Actions Bot"
+    #     git config user.email "<>"
+    # - name: Run co2signal scraper
+    #   env:
+    #     CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
+    #   run: |
+    #     python -m src.ontario_grid_data.co2signal
+    # - name: Run gridwatch scraper
+    #   run: |
+    #     python -m src.ontario_grid_data.gridwatch
+    # - name: Run ieso scraper
+    #   run: |
+    #     python -m src.ontario_grid_data.ieso
+    # - name: Run oeb scraper
+    #   run: |
+    #     python -m src.ontario_grid_data.oeb
     - name: Build panel pwa dashboard
       run: |
         VERSION=$(python -m setuptools_git_versioning)
-        echo ${VERSION}
-        sed 's/__REPLACE_WITH_VERSION_NUMBER__/${VERSION}/g' notebooks/index.ipynb > build/index.ipynb
-        more build/index.ipynb
-    #     python -m panel convert build/index.ipynb --compiled --to pyodide-worker --out docs --pwa --title "Ontario grid data"
-    #     cp notebooks/images/* docs/images/
+        cp notebooks/index.ipynb build/
+        sed -i 's/__REPLACE_WITH_VERSION_NUMBER__/${VERSION}/g' build/index.ipynb
+        python -m panel convert build/index.ipynb --compiled --to pyodide-worker --out docs --pwa --title "Ontario grid data"
+        cp notebooks/images/* docs/images/
     - name: Commit
       continue-on-error: true
       run: |
