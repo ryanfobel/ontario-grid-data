@@ -1,5 +1,5 @@
 {
-    "datetime": "2024-07-24T10:00:00-04:00",
+    "datetime": "2024-07-24T11:00:00-04:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -21,6 +21,7 @@
         "PICKERINGB-G8": "nuclear",
         "BRIGHTON BEACH": "gas",
         "CARDINAL": "gas",
+        "COCHRANECGS": "gas",
         "DESTEC": "gas",
         "DOWCHEMICAL": "gas",
         "DPNTMTLND": "gas",
@@ -49,7 +50,6 @@
         "NAPANEE-G3": "gas",
         "NIPIGONGS": "gas",
         "NORTHBAYGS": "gas",
-        "NPCOCHRANE": "gas",
         "NPIROQFALLS": "gas",
         "NPKIRKLAND-G1-G5": "gas",
         "NPKIRKLAND-G6": "gas",
