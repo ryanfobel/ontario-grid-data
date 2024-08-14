@@ -3,9 +3,9 @@
     "status": "ok",
     "countryCode": "CA-ON",
     "data": {
-        "datetime": "2024-08-14T06:00:00.000Z",
-        "carbonIntensity": 133,
-        "fossilFuelPercentage": 25.290000000000003
+        "datetime": "2024-08-14T07:00:00.000Z",
+        "carbonIntensity": 131,
+        "fossilFuelPercentage": 24.93
     },
     "units": {
         "carbonIntensity": "gCO2eq/kWh"
