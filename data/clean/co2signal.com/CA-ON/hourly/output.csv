@@ -1,4 +1,5 @@
 datetime,data.carbonIntensity,data.fossilFuelPercentage,units.carbonIntensity
+2024-08-16 05:00:00-04:00,106,19.66,gCO2eq/kWh
 2024-08-16 04:00:00-04:00,103,18.97,gCO2eq/kWh
 2024-08-16 03:00:00-04:00,137,26.14,gCO2eq/kWh
 2024-08-16 02:00:00-04:00,140,26.61,gCO2eq/kWh
@@ -831,7 +832,6 @@ datetime,data.carbonIntensity,data.fossilFuelPercentage,units.carbonIntensity
 2024-07-08 03:00:00-04:00,79,14.39,gCO2eq/kWh
 2024-07-08 02:00:00-04:00,81,14.78,gCO2eq/kWh
 2024-07-08 01:00:00-04:00,92,16.78,gCO2eq/kWh
-2024-07-07 23:00:00-04:00,106,19.66,gCO2eq/kWh
 2024-07-07 22:00:00-04:00,120,22.34,gCO2eq/kWh
 2024-07-07 20:00:00-04:00,111,20.48,gCO2eq/kWh
 2024-07-07 19:00:00-04:00,118,21.95,gCO2eq/kWh
