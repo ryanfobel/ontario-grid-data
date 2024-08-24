@@ -1,6 +1,6 @@
 {
-    "datetime": "2024-08-23T23:00:00-04:00",
-    "price": 26.4,
+    "datetime": "2024-08-24T00:00:00-04:00",
+    "price": 26.42,
     "currency": "CAD",
     "source": "ieso.ca",
     "zoneKey": "CA-ON"
