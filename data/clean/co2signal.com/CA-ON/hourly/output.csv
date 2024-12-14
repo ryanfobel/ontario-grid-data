@@ -1,5 +1,5 @@
 datetime,data.carbonIntensity,data.fossilFuelPercentage,units.carbonIntensity
-2024-12-14 05:00:00-05:00,125,23.44,gCO2eq/kWh
+2024-12-14 06:00:00-05:00,125,23.44,gCO2eq/kWh
 2024-12-14 04:00:00-05:00,130,24.46,gCO2eq/kWh
 2024-12-14 03:00:00-05:00,129,24.29,gCO2eq/kWh
 2024-12-14 02:00:00-05:00,96,17.54,gCO2eq/kWh
