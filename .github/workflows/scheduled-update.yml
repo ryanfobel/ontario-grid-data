@@ -37,9 +37,9 @@ jobs:
         CO2SIGNAL_API_TOKEN: ${{ secrets.CO2SIGNAL_API_TOKEN }}
       run: |
         python -m src.ontario_grid_data.co2signal
-    - name: Run gridwatch scraper
-      run: |
-        python -m src.ontario_grid_data.gridwatch
+    # - name: Run gridwatch scraper
+    #   run: |
+    #     python -m src.ontario_grid_data.gridwatch
     - name: Run ieso scraper
       run: |
         python -m src.ontario_grid_data.ieso
