@@ -1,4 +1,5 @@
 datetime,data.carbonIntensity,data.fossilFuelPercentage,units.carbonIntensity
+2025-01-11 01:00:00-05:00,151,28.35,gCO2eq/kWh
 2025-01-11 00:00:00-05:00,147,27.97,gCO2eq/kWh
 2025-01-10 23:00:00-05:00,150,28.57,gCO2eq/kWh
 2025-01-10 22:00:00-05:00,152,29.0,gCO2eq/kWh
