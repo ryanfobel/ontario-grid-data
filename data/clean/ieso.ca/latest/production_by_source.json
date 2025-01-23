@@ -1,11 +1,11 @@
 {
-    "datetime": "2025-01-22T19:00:00-05:00",
+    "datetime": "2025-01-22T20:00:00-05:00",
     "zoneKey": "CA-ON",
     "production": {
-        "biomass": 114.0,
-        "gas": 6003.0,
-        "hydro": 4877.0,
-        "nuclear": 9577.0,
+        "biomass": 82.0,
+        "gas": 5711.0,
+        "hydro": 4895.0,
+        "nuclear": 9575.0,
         "solar": 0.0,
         "wind": 3871.0
     },
