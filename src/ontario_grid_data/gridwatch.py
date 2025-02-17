@@ -4,6 +4,7 @@ import json
 
 import datetime as dt
 import pandas as pd
+import numpy as np
 from selenium import webdriver
 from selenium.common.exceptions import (
     NoSuchElementException,
@@ -106,15 +107,10 @@ def extract_datetime_from_string_list(str_list: List[str]) -> pd.Series:
 
     df = df.drop(columns=["dow"]).dropna().copy()
 
-    # Find the indices where the months and years "rollover"
-    month_rollover_index = df[:-1][
-        df.loc[df.index[1:], "month"].values !=
-        df.loc[df.index[:-1], "month"].values
-    ].index
-
-    year_rollover_index = df.loc[month_rollover_index[:-1]][
-        df.loc[month_rollover_index[1:], "month"].values <
-        df.loc[month_rollover_index[:-1], "month"].values
+    # Find the indices where the years "rollover"
+    year_rollover_index = df[
+        (np.diff(df["month"]) < 0).tolist()
+        + [False]
     ].index
 
     # Assume the most recent date is from the current year
@@ -297,7 +293,7 @@ def main():
         driver.close()
 
     # Clean data
-    print("clean data...")
+    print("clean summary.csv")
     clean_summary(
         pd.read_csv(
             os.path.join(RAW_DATA_PATH, "summary.csv"),
@@ -308,6 +304,7 @@ def main():
         os.path.join(CLEAN_DATA_PATH, "summary.csv")
     )
     for file in ["output.csv", "capability.csv"]:
+        print(f"clean {file}")
         clean_df(
             pd.read_csv(
                 os.path.join(RAW_DATA_PATH, file),
