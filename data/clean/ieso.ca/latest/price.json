@@ -1,6 +1,6 @@
 {
-    "datetime": "2025-03-18T00:00:00-04:00",
-    "price": 50.23,
+    "datetime": "2025-03-18T02:00:00-04:00",
+    "price": 41.27,
     "currency": "CAD",
     "source": "ieso.ca",
     "zoneKey": "CA-ON"
