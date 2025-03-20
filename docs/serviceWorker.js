@@ -1,5 +1,5 @@
 const appName = 'Ontario grid data'
-const appCacheName = 'Ontario grid data-e6e3f7fe90994fb1b34fd8cafd7a8022';
+const appCacheName = 'Ontario grid data-7f4d72eaf9ff4a6ba3e2c1bdc74f8cae';
 
 const preCacheFiles = ['images/favicon.ico', 'images/icon-vector.svg', 'images/icon-32x32.png', 'images/icon-192x192.png', 'images/icon-512x512.png', 'images/apple-touch-icon.png', 'images/index_background.png'];
 
