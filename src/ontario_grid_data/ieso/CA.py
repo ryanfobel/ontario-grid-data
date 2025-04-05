@@ -46,6 +46,7 @@ MAP_GENERATION = {
     "NUCLEAR": "nuclear",
     "SOLAR": "solar",
     "WIND": "wind",
+    "OTHER": "other",
 }
 
 # exchanges and sub-exchanges used by IESO

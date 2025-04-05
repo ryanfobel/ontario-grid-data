@@ -1,5 +1,5 @@
 {
-    "datetime": "2025-03-27T14:00:00-04:00",
+    "datetime": "2025-04-04T23:00:00-04:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -180,6 +180,7 @@
         "WINDSOR AIRPORT SF": "solar",
         "ATIKOKAN-G1": "biomass",
         "CALSTOCKGS": "biomass",
-        "TBAYBOWATER CTS": "biomass"
+        "TBAYBOWATER CTS": "biomass",
+        "ONEIDA ENERGY STORAGE": "other"
     }
 }
