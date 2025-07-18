@@ -1,5 +1,5 @@
 {
-    "datetime": "2025-06-30T07:00:00-04:00",
+    "datetime": "2025-07-18T00:00:00-04:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -181,6 +181,7 @@
         "ATIKOKAN-G1": "biomass",
         "CALSTOCKGS": "biomass",
         "TBAYBOWATER CTS": "biomass",
+        "GOREWAY BESS": "other",
         "ONEIDA ENERGY STORAGE": "other",
         "YORK BESS": "other"
     }
