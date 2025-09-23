@@ -1,5 +1,5 @@
 {
-    "datetime": "2025-09-23T09:00:00-04:00",
+    "datetime": "2025-09-23T10:00:00-04:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -183,6 +183,7 @@
         "CALSTOCKGS": "biomass",
         "TBAYBOWATER CTS": "biomass",
         "GOREWAY BESS": "other",
+        "HAGERSVILLE BESS": "other",
         "ONEIDA ENERGY STORAGE": "other",
         "TILBURY BATTERY STORAGE": "other",
         "YORK BESS": "other"
