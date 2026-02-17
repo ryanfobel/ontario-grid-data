@@ -1,5 +1,5 @@
 {
-    "datetime": "2026-02-17T12:00:00-05:00",
+    "datetime": "2026-02-17T13:00:00-05:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -13,8 +13,6 @@
         "DARLINGTON-G2": "nuclear",
         "DARLINGTON-G3": "nuclear",
         "DARLINGTON-G4": "nuclear",
-        "PICKERINGA-G1": "nuclear",
-        "PICKERINGA-G4": "nuclear",
         "PICKERINGB-G5": "nuclear",
         "PICKERINGB-G6": "nuclear",
         "PICKERINGB-G7": "nuclear",
