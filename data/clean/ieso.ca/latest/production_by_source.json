@@ -1,11 +1,11 @@
 {
-    "datetime": "2026-05-15T03:00:00-04:00",
+    "datetime": "2026-05-15T04:00:00-04:00",
     "zoneKey": "CA-ON",
     "production": {
         "biomass": 0.0,
-        "gas": 2422.0,
-        "hydro": 5755.0,
-        "nuclear": 8305.0,
+        "gas": 2473.0,
+        "hydro": 5827.0,
+        "nuclear": 8306.0,
         "other": 2.0,
         "solar": 0.0,
         "wind": 536.0
