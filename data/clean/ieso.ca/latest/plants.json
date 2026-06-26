@@ -1,5 +1,5 @@
 {
-    "datetime": "2026-06-26T10:00:00-04:00",
+    "datetime": "2026-06-26T14:00:00-04:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -186,6 +186,7 @@
         "NAPANEE BESS": "other",
         "ONEIDA ENERGY STORAGE": "other",
         "TILBURY BATTERY STORAGE": "other",
+        "VAUGHAN 1 BESS": "other",
         "YORK BESS": "other"
     }
 }
