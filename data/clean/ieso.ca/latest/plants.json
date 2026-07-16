@@ -1,5 +1,5 @@
 {
-    "datetime": "2026-07-15T11:00:00-04:00",
+    "datetime": "2026-07-16T15:00:00-04:00",
     "plants": {
         "BRUCEA-G1": "nuclear",
         "BRUCEA-G2": "nuclear",
@@ -25,6 +25,7 @@
         "DPNTMTLND": "gas",
         "EAST WINDSOR-G1": "gas",
         "EAST WINDSOR-G2": "gas",
+        "EAST WINDSOR-G3": "gas",
         "GREENFIELD ENERGY CENTRE-G1": "gas",
         "GREENFIELD ENERGY CENTRE-G2": "gas",
         "GREENFIELD ENERGY CENTRE-G3": "gas",
